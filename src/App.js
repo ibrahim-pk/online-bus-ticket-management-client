@@ -16,6 +16,9 @@ import Bookings from "./pages/Bookings";
 import AdminBookings from "./pages/Admin/AdminBookings";
 import UserHome from "./pages/UserHome";
 import SuccessPage from "./components/Success";
+import ContactForm from "./pages/ContactUs";
+import TicketBlog from "./pages/Blog";
+import AboutPage from "./pages/About";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -34,6 +37,24 @@ function App() {
             path="/buy"
             element={
               <Home />
+            }
+          />
+          <Route
+            path="/contact-us"
+            element={
+              <ContactForm />
+            }
+          />
+           <Route
+            path="/blog"
+            element={
+              <TicketBlog />
+            }
+          />
+           <Route
+            path="/about"
+            element={
+              <AboutPage />
             }
           />
           <Route

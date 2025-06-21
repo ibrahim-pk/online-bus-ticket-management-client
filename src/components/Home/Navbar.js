@@ -7,7 +7,9 @@ import {
   ContainerOutlined,
   CalendarOutlined,
   EnvironmentOutlined,
-  PhoneOutlined
+  PhoneOutlined,
+  ReadFilled,
+  CommentOutlined
 } from "@ant-design/icons";
 import { TypeAnimation } from 'react-type-animation';
 import { Link } from "react-router-dom";
@@ -38,6 +40,11 @@ export default function Navbar() {
           <Menu.Item key="train" icon={<FieldTimeOutlined />}>Train</Menu.Item>
           <Menu.Item key="launch" icon={<ContainerOutlined />}>Launch</Menu.Item>
           <Menu.Item key="event" icon={<CalendarOutlined />}>Event</Menu.Item>
+          <Menu.Item key="blog" icon={<ReadFilled />}><Link to="/blog">Blog</Link>  </Menu.Item>
+
+          <Menu.Item key="contact" icon={<PhoneOutlined />}><Link to="/contact-us">Contact</Link>  </Menu.Item>
+          <Menu.Item key="about" icon={<CommentOutlined />}><Link to="/about">About</Link>  </Menu.Item>
+
           <Menu.Item key="park"><Link to="/login">Login</Link>  </Menu.Item>
         </Menu>
 
