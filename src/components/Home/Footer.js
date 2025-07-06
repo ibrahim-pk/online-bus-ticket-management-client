@@ -5,6 +5,7 @@ import {
   InstagramOutlined,
   LinkedinOutlined,
 } from "@ant-design/icons";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const { Title, Paragraph } = Typography;
 
@@ -75,9 +76,9 @@ const Footer = () => {
           </ul>
 
           <div style={{ marginTop: 30 }}>
-            <FacebookOutlined style={styles.icon} />
-            <InstagramOutlined style={styles.icon} />
-            <LinkedinOutlined style={styles.icon} />
+            <FaFacebookF style={styles.icon} />
+            <FaInstagram style={styles.icon} />
+            <FaLinkedinIn style={styles.icon} />
           </div>
         </Col>
       </Row>
@@ -95,7 +96,7 @@ const Footer = () => {
 
 const styles = {
   footerWrapper: {
-    backgroundColor: "#319b83",
+    backgroundColor: "#76118a",
     padding: "60px 30px 40px",
     color: "#ffffff",
   },
@@ -117,12 +118,13 @@ const styles = {
     fontSize: 15,
     lineHeight: "30px",
   },
-  icon: {
-    fontSize: 20,
-    color: "#ffffff",
-    marginRight: 16,
-    cursor: "pointer",
-  },
+icon: {
+  fontSize: 32,
+  color: "#ffffff",
+  marginRight: 16,
+  cursor: "pointer",
+  transition: "all 0.3s",
+},
   copyright: {
     color: "#ffffff",
     fontSize: 13,

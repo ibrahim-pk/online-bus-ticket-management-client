@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
 import "../resourses/auth.css"; // Optional: keep or enhance
+import Navbar from "../components/Home/Navbar";
 
 function Login() {
   const navigate = useNavigate();
@@ -17,7 +18,8 @@ function Login() {
       dispatch(HideLoading());
       if (response.data.success) {
         message.success(response.data.message);
-        localStorage.setItem("token", response.data.data);
+        localStorage.setItem("token", response?.data?.data);
+        localStorage.setItem("bus-user",JSON.stringify(response?.data?.user));
         window.location.href = "/bookings";
       } else {
         message.error(response.data.message);
@@ -29,7 +31,9 @@ function Login() {
   };
 
   return (
-    <div
+   <div>
+    <Navbar />
+     <div
       className="d-flex justify-content-center align-items-center auth"
       style={{
         height: "100vh",
@@ -77,13 +81,17 @@ function Login() {
           </Form.Item>
           <div className="d-flex justify-content-between align-items-center mt-3">
             <Link to="/register">Don't have an account?</Link>
-            <button className="btn btn-primary px-4" type="submit">
+             <Link to="/reset-password"><p style={{color:"red"}}>Forget Password</p></Link>
+          </div>
+          <div>
+            <button className="btn btn-primary my-2 w-full px-4" type="submit">
               Login
             </button>
           </div>
         </Form>
       </div>
     </div>
+   </div>
   );
 }
 

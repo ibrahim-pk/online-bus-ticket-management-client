@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ShowLoading, HideLoading } from "../redux/alertsSlice";
 import "../resourses/auth.css";
+import Navbar from "../components/Home/Navbar";
 
 function Register() {
   const navigate = useNavigate();
@@ -28,7 +29,9 @@ function Register() {
   };
 
   return (
-    <div
+   <div>
+    <Navbar />
+     <div
       className="d-flex justify-content-center align-items-center auth"
       style={{
         height: "100vh",
@@ -98,6 +101,7 @@ function Register() {
         </Form>
       </div>
     </div>
+   </div>
   );
 }
 

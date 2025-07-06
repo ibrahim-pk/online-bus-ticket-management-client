@@ -1,64 +1,64 @@
 import React from 'react';
 import {
-  BsBusFront,
-  BsAirplaneEngines,
-  BsTrainFront,
-  BsWater,
-  BsCalendarEvent,
-  BsStars
+  BsLightbulb,
+  BsShieldCheck,
+  BsPeople,
+  BsLaptop,
+  BsTree
 } from 'react-icons/bs';
 import Navbar from '../components/Home/Navbar';
 
-const tickets = [
+const blogSections = [
   {
-    icon: <BsBusFront size={32} className="text-success" />,
-    title: "Bus Ticket",
-    description: "No more queuing at counters. Tickets of 100+ bus operators available online."
+    icon: <BsLightbulb size={32} className="text-primary" />,
+    title: "Innovation at Heart",
+    description:
+      "We are passionate about building solutions that make everyday life easier. Bus_Booking website uses simple technology to solve the traditional challenges of bus travel – from long queues to ticket unavailability. With just a few clicks, users can search routes, view available seats, and book tickets from anywhere, anytime.",
   },
   {
-    icon: <BsAirplaneEngines size={32} className="text-success" />,
-    title: "Air Ticket",
-    description: "Now book your air tickets for domestic travel in Bangladesh."
+    icon: <BsShieldCheck size={32} className="text-primary" />,
+    title: "Safety First",
+    description:
+      "In our system, passenger trust matters. We’ve included features like ticket verification and booking history to promote transparency and reliability. While this is a demo project, we’ve modeled our design on real-life platforms that prioritize customer safety and comfort.",
   },
   {
-    icon: <BsTrainFront size={32} className="text-success" />,
-    title: "Train Ticket",
-    description: "100% tickets of Bangladesh Railway are available online. Get yours now!"
+    icon: <BsPeople size={32} className="text-primary" />,
+    title: "Empowering the Community",
+    description:
+      "This website is designed to give users full control over their journey. Whether choosing the best route or selecting a preferred seat, our system offers flexibility and freedom that puts the power in the hands of the traveler.",
   },
   {
-    icon: <BsWater size={32} className="text-success" />,
-    title: "Launch Ticket",
-    description: "Searching for launch/ship tickets? Grab them online from our exclusive inventory."
+    icon: <BsLaptop size={32} className="text-primary" />,
+    title: "Built by Learners, for Learning",
+    description:
+      "This system was developed by students as part of an academic project to explore how technology can be used to solve real-world problems. Through this, we’ve not only learned the value of good software design but also the importance of user experience and responsibility.",
   },
   {
-    icon: <BsCalendarEvent size={32} className="text-success" />,
-    title: "Event Ticket",
-    description: "From concerts to sports, skill development to mental development, book your event tickets online hassle-free."
-  },
-  {
-    icon: <BsStars size={32} className="text-success" />,
-    title: "Park Ticket",
-    description: "Skip the lines and dive into fun! Purchase park tickets from our online inventory."
+    icon: <BsTree size={32} className="text-primary" />,
+    title: "Committed to the Future",
+    description:
+      "We believe in building systems that are efficient and sustainable. Even in a classroom setting, our focus has been on creating a platform that is scalable, reliable, and easy to maintain — showing that even small projects can make a big difference.",
   },
 ];
 
 const TicketBlog = () => {
   return (
     <div>
-        <Navbar></Navbar>
-    <div className="container my-5">
-      {tickets.map((ticket, index) => (
-        <div key={index} className="row mb-4 pb-3 border-bottom">
-          <div className="col-2 text-center">
-            {ticket.icon}
-            <div className="fw-bold text-success mt-2">{ticket.title}</div>
+      <Navbar />
+      <div className="container my-5">
+        <h2 className="text-center fw-bold mb-5">Blog Page</h2>
+        {blogSections.map((section, index) => (
+          <div key={index} className="row mb-5 pb-3 border-bottom">
+            <div className="col-2 text-center">
+              {section.icon}
+              <div className="fw-bold text-primary mt-2">{section.title}</div>
+            </div>
+            <div className="col-10">
+              <p className="mb-0 text-muted">{section.description}</p>
+            </div>
           </div>
-          <div className="col-10">
-            <p className="mb-0">{ticket.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
     </div>
   );
 };

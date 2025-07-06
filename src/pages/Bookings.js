@@ -6,7 +6,6 @@ import { useReactToPrint } from "react-to-print";
 import { FaBusAlt, FaMapMarkerAlt, FaChair, FaMoneyBillWave } from "react-icons/fa";
 import { QRCodeCanvas } from 'qrcode.react';
 
-
 import PageTitle from "../components/PageTitle";
 import { axiosInstance } from "../helpers/axiosInstance";
 import { ShowLoading, HideLoading } from "../redux/alertsSlice";
@@ -21,10 +20,7 @@ function Bookings() {
   const getBookings = async () => {
     try {
       dispatch(ShowLoading());
-      const response = await axiosInstance.post(
-        "/api/bookings/get-bookings-by-user-id",
-        {}
-      );
+      const response = await axiosInstance.post("/api/bookings/get-bookings-by-user-id", {});
       dispatch(HideLoading());
       if (response.data.success) {
         const mappedData = response.data.data.map((booking) => ({
@@ -45,6 +41,29 @@ function Bookings() {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
+
+  const handleRefund = async (record) => {
+    //console.log(tranId)
+  if (!window.confirm("Are you sure you want to cancel and request refund?")) 
+    return;
+
+  try {
+    const res = await fetch(`/api/bookings/refund?record=${record}`);
+    const data = await res.json();
+    if (data.success) {
+      message.success("Refund initiated successfully.");
+      console.log(data.data); // Optional: show details
+    } else {
+      message.error(data.message || "Refund failed.");
+    }
+  } catch (err) {
+    message.error("Refund request failed");
+  }
+};
+
+
+ 
+
 
   useEffect(() => {
     getBookings();
@@ -74,17 +93,34 @@ function Bookings() {
     },
     {
       title: "Action",
-      render: (_, record) => (
-        <span
-          className="text-blue-500 underline cursor-pointer"
-          onClick={() => {
-            setSelectedBooking(record);
-            setShowPrintModal(true);
-          }}
-        >
-          Print Ticket
-        </span>
-      ),
+      render: (_, record) => {
+        const canCancel = moment(record.journeyDate + " " + record.departure).diff(moment(), "hours") >= 24;
+        return (
+          <div className="d-flex flex-column gap-1">
+            <span
+              className="text-blue-500 underline cursor-pointer"
+              onClick={() => {
+                setSelectedBooking(record);
+                setShowPrintModal(true);
+              }}
+            >
+              Print Ticket
+            </span>
+            {canCancel ? (
+              <span
+                className="text-danger underline cursor-pointer"
+                onClick={() => handleRefund(record)}
+              >
+                Cancel Ticket
+              </span>
+            ) : (
+              <span className="text-muted" style={{ fontSize: 12 }}>
+                Cancellation closed
+              </span>
+            )}
+          </div>
+        );
+      },
     },
   ];
 
@@ -118,18 +154,16 @@ function Bookings() {
               <p><FaMoneyBillWave /> <strong>Total Fare:</strong> ৳{selectedBooking.fare * selectedBooking.seats.length}</p>
 
               <div style={{ marginTop: 20, textAlign: "center" }}>
-                <div style={{ marginTop: 20, textAlign: "center" }}>
-                  <QRCodeCanvas
-                    value={JSON.stringify({
-                      bookingId: selectedBooking._id,
-                      seats: selectedBooking.seats,
-                      journeyDate: selectedBooking.journeyDate,
-                      busName: selectedBooking.name,
-                    })}
-                    size={128}
-                  />
-                  <p style={{ fontSize: "12px", marginTop: 10 }}>Scan to verify</p>
-                </div>
+                <QRCodeCanvas
+                  value={JSON.stringify({
+                    bookingId: selectedBooking._id,
+                    seats: selectedBooking.seats,
+                    journeyDate: selectedBooking.journeyDate,
+                    busName: selectedBooking.name,
+                  })}
+                  size={128}
+                />
+                <p style={{ fontSize: "12px", marginTop: 10 }}>Scan to verify</p>
               </div>
             </div>
           </div>

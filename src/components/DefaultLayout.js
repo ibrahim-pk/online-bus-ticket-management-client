@@ -35,6 +35,11 @@ function DefaultLayout({ children }) {
       path: "/",
       icon: "ri-home-line",
     },
+     {
+      name: "Dashboard",
+      path: "/admin/dashboard",
+      icon: "ri-dashboard-line",
+    },
     {
       name: "Buses",
       path: "/admin/buses",
@@ -49,6 +54,11 @@ function DefaultLayout({ children }) {
       name: "Bookings",
       path: "/admin/bookings",
       icon: "ri-file-list-line",
+    },
+     {
+      name: "Feedback",
+      path: "/admin/feedback",
+      icon: "ri-feedback-line",
     },
     {
       name: "Logout",
@@ -66,11 +76,10 @@ function DefaultLayout({ children }) {
   return (
     <div className="layout-parent">
       <div className="sidebar">
-        <div className="sidebar-header">
-             <h1 className="logo">SB</h1>
+        <div className="sidebar-header pt-2">
              <h1 className="role">{user?.name} <br />Role : {user?.isAdmin ? 'Admin' : 'User'}</h1>
         </div>
-        <div className="d-flex flex-column gap-3 justify-content-start menu">
+        <div className="d-flex flex-column gap-2 justify-content-start menu">
           {menuToBeRendered.map((item, index) => {
             return (
               <div

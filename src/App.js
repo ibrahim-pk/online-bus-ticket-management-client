@@ -19,6 +19,10 @@ import SuccessPage from "./components/Success";
 import ContactForm from "./pages/ContactUs";
 import TicketBlog from "./pages/Blog";
 import AboutPage from "./pages/About";
+import ResetPassword from "./components/ResetPassword";
+import Profile from "./pages/Profile";
+import AdminFeedback from "./pages/Admin/AdminFeedback";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -74,6 +78,15 @@ function App() {
             }
           />
 
+           <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/order/success"
             element={
@@ -89,6 +102,24 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminBuses />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/feedback"
+            element={
+              <ProtectedRoute>
+                <AdminFeedback />
+              </ProtectedRoute>
+            }
+          />
+
+           <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
               </ProtectedRoute>
             }
           />
@@ -119,6 +150,12 @@ function App() {
             path="/login"
             element={
               <Login />
+            }
+          />
+           <Route
+            path="/reset-password"
+            element={
+              <ResetPassword />
             }
           />
         </Routes>

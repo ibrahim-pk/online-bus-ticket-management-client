@@ -20,13 +20,15 @@ export default function Navbar() {
       <div style={{ backgroundColor: 'white', padding: '8px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Left: Animated Brand */}
         <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#16a34a', whiteSpace: 'nowrap' }}>
-          <TypeAnimation
+         <Link to="/">
+            <TypeAnimation
             sequence={["Himachol", 1000]}
             wrapper="span"
             cursor={false}
             repeat={Infinity}
             style={{ display: 'inline-block' }}
           />
+         </Link>
         </div>
 
         {/* Center: Menu */}
